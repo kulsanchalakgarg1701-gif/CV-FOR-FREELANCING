@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Freelancers</title>
+
+  <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0 20px;
+            color: #0d3b66;
+            font-size: 3em;
+        }
+
+        .freelancers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .freelancer-card {
+            background: #ffffff;
+            width: 280px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .freelancer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        .freelancer-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .freelancer-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .freelancer-info h2 {
+            margin: 10px 0 5px;
+            color: #0d3b66ef;
+        }
+
+        .freelancer-info p {
+            margin: 5px 0 15px;
+            color: #555;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .skill {
+            background: #66a6ff;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #0d3b66;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #145da0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .freelancers-container {
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- Font Awesome CDN for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <h1>Our Freelancers</h1>
+
+  <div class="freelancers-container">
+
+        <!-- Freelancer 1 -->
+  <div class="freelancer-card">
+            <div class="freelancer-image">
+                <img src=https://www.hrmanagementapp.com/wp-content/uploads/2019/06/freelancer-2.jpg alt="Freelancer 1">
+            </div>
+            <div class="freelancer-info">
+                <h2>Jane Doe</h2>
+                <p>Web Developer</p>
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Freelancer 2 -->
+  <div class="freelancer-card">
+            <div class="freelancer-image">
+                <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV4U64AdUNHzZWiKxMF_VGM1SeC8EkeXYGSA&s alt="Freelancer 2">
+            </div>
+            <div class="freelancer-info">
+                <h2>John Smith</h2>
+                <p>Graphic Designer</p>
+                <div class="skills">
+                    <span class="skill">Photoshop</span>
+                    <span class="skill">Illustrator</span>
+                    <span class="skill">Figma</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Freelancer 3 -->
+  <div class="freelancer-card">
+            <div class="freelancer-image">
+                <img src="https://www.thestatesman.com/wp-content/uploads/2021/03/QT-Freelancers.jpg" alt="Freelancer 3">
+            </div>
+            <div class="freelancer-info">
+                <h2>Sarah Lee</h2>
+                <p>Digital Marketer</p>
+                <div class="skills">
+                    <span class="skill">SEO</span>
+                    <span class="skill">Content</span>
+                    <span class="skill">Social Media</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+  </div>
+  <script>
+const cards = document.querySelectorAll('.freelancer-card');
+window.addEventListener('load', () => {
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add('show');
+        }, index * 200);
+    });
+});
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('keyup', () => {
+    const value = searchInput.value.toLowerCase();
+cards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+if (text.includes(value)) {
+    card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        const name = card.querySelector('h2').innerText;
+        alert("You clicked on " + name);
+    });
+});
+</script>
+
+</body>
+</html>

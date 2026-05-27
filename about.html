@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+
+  <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #0d3b66;
+        }
+
+        .about {
+            padding: 60px 20px;
+            background: #ffffffaa;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .text {
+            flex: 1;
+        }
+
+        .text h2 {
+            margin-top: 0;
+        }
+
+        .text p {
+            line-height: 1.7;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Hover effect on image */
+        .image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Colored section highlights */
+        .highlight {
+            background: linear-gradient(90deg, #ffafbd, #ffc3a0);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0d3b66;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: #145da0;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column-reverse;
+            }
+
+            .image {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+  <section class="about">
+        <div class="container">
+            <h1>About Us</h1>
+            <p class="intro">
+                Welcome to our creative space! We are passionate about building beautiful, modern, and user-friendly websites.
+            </p>
+
+  <div class="content">
+                <div class="text">
+                    <span class="highlight">Our Mission</span>
+                    <h2>Creating Impact</h2>
+                    <p>
+                        Our mission is to provide innovative web solutions that help people grow and achieve their digital goals. 
+                        Every project we take is crafted with care, creativity, and performance in mind.
+                    </p>
+
+  <span class="highlight">Who We Are</span>
+                    <h2>Meet the Team</h2>
+                    <p>
+                        We are a small team of developers, designers, and dreamers who love coding, design, and problem-solving. 
+                        Our goal is to make every website a memorable experience.
+                    </p>
+
+  <a href="contact.html" class="btn">Contact Us</a>
+
+                </div>
+
+  <div class="image">
+                    <img src="team.jpeg">
+                </div>
+            </div>
+        </div>
+    </section>
+<script>
+// Fade-in on scroll
+const revealElements = document.querySelectorAll(".text, .image, .intro");
+function revealOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+revealElements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+if (boxTop < triggerBottom) {
+            el.style.opacity = 1;
+            el.style.transform = "translateY(0)";
+        } else {
+            el.style.opacity = 0;
+            el.style.transform = "translateY(40px)";
+        }
+    });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+const introText = document.querySelector(".intro");
+const text = introText.innerText;
+introText.innerText = "";
+let i = 0;
+function typeEffect() {
+    if (i < text.length) {
+        introText.innerText += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 30);
+    }
+}
+typeEffect();
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", function(e) {
+    const circle = document.createElement("span");
+    circle.style.position = "absolute";
+    circle.style.background = "rgba(255,255,255,0.5)";
+    circle.style.borderRadius = "50%";
+    circle.style.width = "100px";
+    circle.style.height = "100px";
+    circle.style.top = (e.offsetY - ;450) + "px";
+    circle.style.left = (e.offsetX - 50) + "px";
+    circle.style.pointerEvents = "none";
+this.appendChild(circle);
+setTimeout(() => circle.remove(), 500);
+});
+const image = document.querySelector(".image img");
+image.addEventListener("mousemove", (e) => {
+    const rect = image.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateX = (y / rect.height - 0.5) * 10;
+    const rotateY = (x / rect.width - 0.5) * -10;
+
+image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
+image.addEventListener("mouseleave", () => {
+    image.style.transform = "rotateX(0) rotateY(0) scale(1)";
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .profile {
+            margin-top: 20px;
+            text-align: center;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Create Profile</h2>
+
+    <input type="text" id="name" placeholder="Enter your name">
+    <input type="email" id="email" placeholder="Enter your email">
+    <input type="number" id="age" placeholder="Enter your age">
+    <textarea id="bio" placeholder="Write something about you"></textarea>
+    <input type="file" id="image">
+
+    <button onclick="createProfile()">Create Profile</button>
+
+    <div class="profile" id="profile"></div>
+</div>
+
+
+<script>
+let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+
+// Load profiles when page opens
+window.onload = displayProfiles;
+
+function createProfile() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let age = document.getElementById("age").value.trim();
+    let bio = document.getElementById("bio").value.trim();
+    let imageInput = document.getElementById("image");
+
+    if (!name || !email) {
+        alert("Please fill Name and Email");
+        return;
+    }
+
+    // Handle image properly (persistent)
+    if (imageInput.files.length > 0) {
+        let reader = new FileReader();
+
+        reader.onload = function () {
+            saveProfile(name, email, age, bio, reader.result);
+        };
+
+        reader.readAsDataURL(imageInput.files[0]);
+    } else {
+        saveProfile(name, email, age, bio, "");
+    }
+}
+
+function saveProfile(name, email, age, bio, image) {
+    let profile = { name, email, age, bio, image };
+
+    profiles.push(profile);
+    localStorage.setItem("profiles", JSON.stringify(profiles));
+
+    displayProfiles();
+    clearForm();
+}
+
+function displayProfiles() {
+    let profileDiv = document.getElementById("profile");
+    profileDiv.innerHTML = "";
+
+    profiles.forEach((p, index) => {
+        profileDiv.innerHTML += `
+            <div style="margin-top:20px; border-top:1px solid #ccc; padding-top:10px;">
+                <h3>${p.name}</h3>
+                <p><strong>Email:</strong> ${p.email}</p>
+                <p><strong>Age:</strong> ${p.age}</p>
+                <p>${p.bio}</p>
+                ${p.image ? `<img src="${p.image}">` : ""}
+                <br><br>
+                <button onclick="deleteProfile(${index})" 
+                        style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+                    Delete
+                </button>
+            </div>
+        `;
+    });
+}
+
+function deleteProfile(index) {
+    profiles.splice(index, 1);
+    localStorage.setItem("profiles", JSON.stringify(profiles));
+    displayProfiles();
+}
+
+function clearForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("bio").value = "";
+    document.getElementById("image").value = "";
+}
+</script>
+</body>
+</html >

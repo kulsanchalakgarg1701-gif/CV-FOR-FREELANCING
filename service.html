@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .card button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Our Services</h1>
+    <p>We provide high quality solutions</p>
+</header>
+
+<section class="services">
+
+    <div class="card">
+        <h3>Web Development</h3>
+        <p>We build responsive and modern websites.</p>
+        <button onclick="alert('Web Development Selected')">Select</button>
+    </div>
+
+    <div class="card">
+        <h3>App Development</h3>
+        <p>Create powerful mobile applications.</p>
+        <button onclick="alert('App Development Selected')">Select</button>
+    </div>
+
+    <div class="card">
+        <h3>Graphic Design</h3>
+        <p>Creative designs for your brand.</p>
+        <button onclick="alert('Graphic Design Selected')">Select</button>
+    </div>
+
+    <div class="card">
+        <h3>Digital Marketing</h3>
+        <p>Grow your business online.</p>
+        <button onclick="alert('Digital Marketing Selected')">Select</button>
+    </div>
+
+</section>
+
+<footer>
+    <p>&copy; 2026 Your Company</p>
+</footer>
+
+</body>
+</html>
